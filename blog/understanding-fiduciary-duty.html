@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Understanding Fiduciary Duty in Financial Planning — Fin Astra</title>
+  <meta name="description" content="Fiduciary duty is the highest legal standard of care in financial advisory. We explore what it means, why it matters, and how lawyer-led advisory firms are uniquely positioned to uphold it.">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23C1603D'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='18' fill='white' font-weight='300'>F</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+
+  <style>
+    .blog-post { max-width: 760px; margin-inline: auto; }
+    .blog-post__header { margin-bottom: 48px; }
+    .blog-post__body { font-size: 18px; line-height: 1.8; color: var(--text-secondary); }
+    .blog-post__body h2 { font-size: clamp(22px,2.5vw,30px); color: var(--text-primary); margin: 48px 0 16px; }
+    .blog-post__body h3 { font-size: clamp(18px,2vw,24px); color: var(--text-primary); margin: 32px 0 12px; }
+    .blog-post__body p { margin-bottom: 20px; }
+    .blog-post__body blockquote { border-left: 3px solid var(--terracotta); padding-left: 24px; margin: 32px 0; font-style: italic; font-family: var(--font-display); font-size: 20px; color: var(--text-primary); }
+    .blog-post__body ul { margin: 16px 0 24px 0; }
+    .blog-post__body li { display: flex; gap: 10px; margin-bottom: 10px; }
+    .blog-post__body li::before { content: '→'; color: var(--terracotta); font-weight: 600; flex-shrink: 0; }
+    .blog-back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 32px; cursor: none; transition: gap 0.2s; }
+    .blog-back:hover { gap: 12px; }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js" defer></script>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="custom-cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+
+  <!-- NAV -->
+  <header class="nav-bar scrolled" role="banner">
+    <div class="nav-bar__inner">
+      <a href="../index.html" class="nav-logo" aria-label="Fin Astra — Home">
+        <svg class="nav-logo__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" fill="#C1603D"/><path d="M8 8h16M8 16h10M8 24h13" stroke="#FBF8F3" stroke-width="1.5" stroke-linecap="square"/><circle cx="24" cy="24" r="4" stroke="#FBF8F3" stroke-width="1.5" fill="none"/></svg>
+        <span class="nav-logo__wordmark">Fin <span>Astra</span></span>
+      </a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul class="nav-links" role="list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../practice-areas.html" class="nav-link">Practice Areas</a></li>
+          <li><a href="../resources.html" class="nav-link active">Resources</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="https://wa.me/15550000000?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation." class="btn btn-terracotta" target="_blank" rel="noopener noreferrer">Book a Consultation →</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+    <ul class="nav-mobile__links" role="list">
+      <li><a href="../index.html" class="nav-mobile__link">Home</a></li>
+      <li><a href="../practice-areas.html" class="nav-mobile__link">Practice Areas</a></li>
+      <li><a href="../resources.html" class="nav-mobile__link">Resources</a></li>
+      <li><a href="../about.html" class="nav-mobile__link">About</a></li>
+      <li><a href="../contact.html" class="nav-mobile__link">Contact</a></li>
+    </ul>
+    <div class="nav-mobile__cta">
+      <a href="https://wa.me/15550000000?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation." class="btn btn-terracotta w-full" target="_blank" rel="noopener noreferrer">Book a Consultation →</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div style="background:var(--bg-secondary);padding-top:100px;padding-bottom:0;">
+      <div class="container">
+        <div class="blog-post" style="padding-top:48px;">
+          <a href="../resources.html#blog" class="blog-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back to Resources
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="post-heading">
+      <div class="container">
+        <article class="blog-post">
+
+          <header class="blog-post__header">
+            <div class="section-eyebrow" style="margin-bottom:16px;">
+              <span style="background:rgba(193,96,61,0.08);padding:3px 10px;border-radius:2px;font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:var(--terracotta);">Estate Planning</span>
+              <time style="font-size:12px;color:var(--text-tertiary);font-weight:500;" datetime="2026-06-12">June 12, 2026</time>
+            </div>
+            <h1 id="post-heading" style="margin-bottom:24px;">Understanding Fiduciary Duty in Financial Planning</h1>
+            <div style="display:flex;align-items:center;gap:16px;padding-top:20px;border-top:1px solid var(--border-subtle);">
+              <div>
+                <p style="font-size:14px;font-weight:600;color:var(--text-primary);">Alexandra M. Rourke, Esq.<!-- REPLACE: author name --></p>
+                <p style="font-size:12px;color:var(--text-tertiary);">Managing Partner, Fin Astra</p>
+              </div>
+            </div>
+          </header>
+
+          <div class="blog-post__body">
+            <p>Fiduciary duty is not a phrase most financial advisors lead with — and for good reason. It commits them to something most are unwilling to commit to: legally enforceable loyalty to a client's interests, above their own.</p>
+
+            <p>At Fin Astra, fiduciary duty is not a marketing claim. It is a legal standard that our licensed attorneys have operated under for their entire professional lives. Understanding what it actually means — and why it matters enormously in financial planning — is the purpose of this article.</p>
+
+            <h2>What Is Fiduciary Duty?</h2>
+
+            <p>A fiduciary is a person who holds a position of trust with respect to another person's property or interests. Fiduciary duty is the legal obligation arising from that relationship — requiring the fiduciary to act in the best interests of the beneficiary, not their own.</p>
+
+            <p>In its simplest form, fiduciary duty requires three things:</p>
+
+            <ul>
+              <li>Loyalty: acting solely in the client's interest, avoiding conflicts of interest</li>
+              <li>Care: applying the skill and diligence of a competent professional</li>
+              <li>Disclosure: revealing any conflicts of interest that cannot be avoided</li>
+            </ul>
+
+            <p>These obligations are familiar territory for attorneys. Lawyers have operated under fiduciary standards as a matter of professional ethics — enforced by bar licensing bodies — for as long as the legal profession has existed.</p>
+
+            <h2>The Suitability Standard vs. The Fiduciary Standard</h2>
+
+            <p>The key distinction in financial services is between the <strong>suitability standard</strong> and the <strong>fiduciary standard</strong>.</p>
+
+            <p>Under the suitability standard, a financial advisor must recommend products that are "suitable" for a client — meaning they are not obviously inappropriate. This is a low bar. A commission-generating product can be "suitable" even if a lower-cost, higher-quality alternative exists.</p>
+
+            <blockquote>"Suitable is not the same as best. It is the difference between an advisor who works for you and one who works near you."</blockquote>
+
+            <p>The fiduciary standard is more demanding. It requires advisors to act in the client's best interest — period. This means:</p>
+
+            <ul>
+              <li>Recommending the lowest-cost appropriate investment, not the highest-commission one</li>
+              <li>Disclosing conflicts of interest before they influence advice</li>
+              <li>Never placing personal financial interests above the client's</li>
+              <li>Maintaining competence sufficient to discharge the duty of care</li>
+            </ul>
+
+            <h2>Why Lawyer-Led Advisory Is Different</h2>
+
+            <p>Licensed attorneys are bound by fiduciary obligations in their professional role — through bar rules, professional responsibility codes, and common law — regardless of whether they also hold financial designations. This means the consequences for breaching fiduciary duty are not merely civil: bar admission can be revoked, criminal liability may arise, and professional indemnity claims are possible.</p>
+
+            <p>This is categorically different from the accountability structure of a typical registered investment adviser, where the practical consequences of breaching fiduciary duty are primarily regulatory and civil.</p>
+
+            <h2>Practical Implications for Your Financial Planning</h2>
+
+            <p>When you engage an advisor subject to genuine fiduciary obligations, several things change:</p>
+
+            <ul>
+              <li>Product recommendations are evaluated on merit, not margin</li>
+              <li>Conflicts of interest are disclosed in writing before they influence advice</li>
+              <li>Fee structures are transparent and not contingent on third-party product sales</li>
+              <li>Documentation standards are higher — because professional liability demands it</li>
+            </ul>
+
+            <p>At Fin Astra, every engagement begins with a written statement of scope, fee structure, and any relevant conflicts — none of which we are aware of in a standard engagement, because we do not accept commissions or referral fees from product providers.</p>
+
+            <h2>How to Verify Fiduciary Status</h2>
+
+            <p>Not every advisor who uses the word "fiduciary" is bound by it in the way that matters. Here are the questions worth asking any prospective advisor:</p>
+
+            <ul>
+              <li>Are you a licensed attorney or a Registered Investment Adviser (RIA)?</li>
+              <li>Do you accept commissions or referral fees from any product provider?</li>
+              <li>Will you confirm in writing that you are acting as my fiduciary for this engagement?</li>
+              <li>Are there any conflicts of interest that apply to our relationship?</li>
+            </ul>
+
+            <p>If an advisor cannot answer these questions directly and in writing, that is itself informative.</p>
+
+            <hr style="border:none;border-top:1px solid var(--border-subtle);margin:40px 0;">
+
+            <p style="font-size:14px;color:var(--text-tertiary);font-style:italic;">This article is for informational purposes only and does not constitute legal or financial advice. Please consult directly with Fin Astra or another qualified professional regarding your specific circumstances.</p>
+          </div>
+
+          <!-- CTA -->
+          <div style="margin-top:56px;padding:40px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:2px;text-align:center;">
+            <h3 style="margin-bottom:12px;">Have questions about fiduciary advisory?</h3>
+            <p style="font-size:15px;color:var(--text-secondary);margin-bottom:24px;">Speak with one of our attorney-advisors about what genuine fiduciary-standard advice looks like in practice.</p>
+            <a href="https://wa.me/15550000000?text=Hello%2C%20I%20read%20about%20fiduciary%20duty%20on%20the%20Fin%20Astra%20website%20and%20would%20like%20to%20discuss%20further." class="btn btn-terracotta" target="_blank" rel="noopener noreferrer">Book a Consultation →</a>
+          </div>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (abbreviated for blog page) -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:1px solid rgba(247,242,234,0.10);padding-top:32px;">
+        <p class="footer__disclaimer">Fin Astra provides financial advisory services. Nothing on this website constitutes formal legal advice, investment advice, or a solicitation to buy or sell any financial instrument. Please consult directly with our team regarding your specific circumstances.</p>
+        <p class="footer__copy">© <span class="footer-year">2026</span> Fin Astra.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/animations.js"></script>
+  <script src="../assets/js/cursor.js"></script>
+  <script>document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());</script>
+</body>
+</html>

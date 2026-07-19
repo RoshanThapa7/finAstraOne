@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://finastra.com/sitemap.xml
+# REPLACE: update domain from finastra.com to actual domain
