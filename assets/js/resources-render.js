@@ -18,16 +18,16 @@ function getCategoryLabel(cat) {
 
 function getPlaceholderSVG(tag) {
   const colors = {
-    'Estate Planning': '#C1603D',
+    'Estate Planning': '#9C7A1E',
     'Regulatory': '#6B5F52',
-    'Succession': '#C1603D',
+    'Succession': '#B8912E',
     'Tax Strategy': '#6B8F5C',
     'Press': '#2B2622',
     'Corporate': '#6B5F52',
-    'Compliance': '#C1603D',
+    'Compliance': '#9C7A1E',
     'Wealth': '#6B8F5C',
   };
-  const color = colors[tag] || '#9C8F7E';
+  const color = colors[tag] || '#B8912E';
   return `
     <div class="card-resource__thumb-placeholder" aria-hidden="true">
       <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">

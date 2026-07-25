@@ -7,20 +7,29 @@
 
 /* ─── CSS CUSTOM PROPERTIES ─────────────────────────────── */
 :root {
-  /* Palette */
-  --bg-primary:       #F7F2EA;
-  --bg-secondary:     #EFE6D8;
-  --bg-elevated:      #FBF8F3;
-  --charcoal:         #2B2622;
-  --charcoal-deep:    #1C1815;
-  --terracotta:       #C1603D;
-  --terracotta-bright:#D97847;
-  --text-primary:     #2B2622;
-  --text-inverse:     #F7F2EA;
-  --text-secondary:   #6B5F52;
+  /* Palette — whitish gold */
+  --bg-primary:       #FCFAF4;
+  --bg-secondary:     #F4EEE0;
+  --bg-elevated:      #FFFFFF;
+  --charcoal:         #2A251F;
+  --charcoal-deep:    #1B1712;
+
+  /* Gold accent system */
+  --gold-deep:        #8A6B1A;
+  --gold:             #9C7A1E;
+  --gold-bright:      #C9A227;
+  --gold-soft:        rgba(156, 122, 30, 0.10);
+
+  /* Backwards-compatible aliases (mapped to gold) */
+  --terracotta:       var(--gold);
+  --terracotta-bright:var(--gold-bright);
+
+  --text-primary:     #2A251F;
+  --text-inverse:     #FCFAF4;
+  --text-secondary:   #665B4E;
   --text-tertiary:    #9C8F7E;
   --border-subtle:    rgba(43, 38, 34, 0.10);
-  --border-strong:    rgba(193, 96, 61, 0.35);
+  --border-strong:    rgba(156, 122, 30, 0.38);
   --success:          #6B8F5C;
   --error:            #B5452F;
 
@@ -57,9 +66,16 @@
 html {
   font-size: 100%;
   scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-padding-top: 90px; /* keep anchor targets clear of the fixed nav */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Anchor targets clear the fixed nav on direct hash navigation */
+:target { scroll-margin-top: 90px; }
+
+/* Images render smoothly and never overflow their container */
+img { max-width: 100%; height: auto; }
 
 body {
   font-family: var(--font-body);
@@ -205,8 +221,8 @@ p { line-height: 1.65; color: var(--text-secondary); }
   position: absolute;
   top: -100%;
   left: 16px;
-  background: var(--terracotta);
-  color: #fff;
+  background: var(--gold-bright);
+  color: var(--charcoal-deep);
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;

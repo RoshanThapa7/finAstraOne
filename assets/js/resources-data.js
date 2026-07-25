@@ -12,7 +12,7 @@ const resourcesData = [
     tag: "Estate Planning",
     date: "2026-06-12",
     excerpt: "Fiduciary duty is the highest legal standard of care in financial advisory. We explore what it means, why it matters, and how lawyer-led advisory firms are uniquely positioned to uphold it.",
-    image: null
+    image: "/assets/images/insight-finance.png"
   },
   {
     slug: "regulatory-landscape-2026",

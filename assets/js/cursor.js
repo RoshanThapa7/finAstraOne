@@ -16,6 +16,11 @@
   const cursorLabel = cursor ? cursor.querySelector('.cursor-label') : null;
   if (!cursor) return;
 
+  // Signal that the custom cursor is active. CSS only hides the native cursor
+  // when this class is present, so if this script ever fails the normal
+  // pointer stays visible (prevents the "cursor disappears" bug).
+  document.documentElement.classList.add('has-custom-cursor');
+
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let cursorX = mouseX;
@@ -103,17 +108,19 @@
       });
     });
 
-    // Buttons get the hidden state (magnetic takes over)
+    // Buttons: keep a small solid dot visible (never hide the cursor entirely,
+    // otherwise the pointer disappears while the magnetic effect takes over).
     document.querySelectorAll('.btn').forEach(btn => {
       btn.addEventListener('mouseenter', () => {
         overMagneticBtn = true;
-        cursor.classList.add('hidden');
+        cursor.classList.remove('hidden');
         cursor.classList.remove('expanded');
+        cursor.classList.add('on-button');
       });
 
       btn.addEventListener('mouseleave', () => {
         overMagneticBtn = false;
-        cursor.classList.remove('hidden');
+        cursor.classList.remove('on-button');
       });
     });
   }
@@ -220,10 +227,10 @@
   }
 
   function getResourcePlaceholderSVG() {
-    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#EFE6D8,#F7F2EA);">
+    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F4EEE0,#FCFAF4);">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#C1603D" stroke-width="1.5" fill="none"/>
-        <path d="M14 24h20M14 18h12M14 30h16" stroke="#C1603D" stroke-width="1.5" stroke-linecap="square"/>
+        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#B8912E" stroke-width="1.5" fill="none"/>
+        <path d="M14 24h20M14 18h12M14 30h16" stroke="#B8912E" stroke-width="1.5" stroke-linecap="square"/>
       </svg>
     </div>`;
   }

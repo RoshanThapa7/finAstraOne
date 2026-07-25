@@ -3,6 +3,28 @@
    animations.css — GSAP state classes, cursor, magnetic
    ============================================================ */
 
+/* ─── NATIVE CURSOR FALLBACK ─────────────────────────────── */
+/* When the custom cursor script hasn't activated (JS off/failed, or touch),
+   restore normal native cursors so the pointer never disappears. */
+html:not(.has-custom-cursor) * { cursor: auto; }
+html:not(.has-custom-cursor) a,
+html:not(.has-custom-cursor) button,
+html:not(.has-custom-cursor) .btn,
+html:not(.has-custom-cursor) [role="button"],
+html:not(.has-custom-cursor) .nav-hamburger,
+html:not(.has-custom-cursor) .card-service,
+html:not(.has-custom-cursor) .card-resource,
+html:not(.has-custom-cursor) .card-team,
+html:not(.has-custom-cursor) .practice-item__header,
+html:not(.has-custom-cursor) .useful-link-item,
+html:not(.has-custom-cursor) .tab-btn,
+html:not(.has-custom-cursor) .nav-link,
+html:not(.has-custom-cursor) .nav-dropdown__trigger,
+html:not(.has-custom-cursor) .nav-dropdown__item,
+html:not(.has-custom-cursor) .footer__link,
+html:not(.has-custom-cursor) .footer__social { cursor: pointer; }
+html:not(.has-custom-cursor) .custom-cursor { display: none; }
+
 /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
 .custom-cursor {
   position: fixed;
@@ -30,8 +52,16 @@
 .custom-cursor.expanded {
   width: 48px;
   height: 48px;
-  background: rgba(193, 96, 61, 0.15);
-  border-color: var(--terracotta);
+  background: rgba(201, 162, 39, 0.18);
+  border-color: var(--gold);
+}
+
+/* Solid dot state shown while hovering magnetic buttons (prevents cursor vanishing) */
+.custom-cursor.on-button {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 .custom-cursor.hidden {
