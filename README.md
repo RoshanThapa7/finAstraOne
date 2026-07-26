@@ -103,10 +103,12 @@ No server-side code. No API routes. Fully static.
 See `assets/css/style.css` for full CSS custom properties (palette, typography, spacing).
 
 Key tokens:
-- `--bg-primary: #FCFAF4` — whitish warm ivory
-- `--bg-secondary: #F4EEE0` — soft champagne
-- `--gold: #9C7A1E` / `--gold-bright: #C9A227` — primary gold accents (aliased as `--terracotta` for backwards compatibility)
-- `--charcoal: #2A251F` — primary text / contrast bands
+- `--white: #FFFFFF` — peace, primary surfaces
+- `--bg-secondary: #FAF7F0` — warm gold-white sections
+- `--bg-green-soft: #F4F8F6` — subtle green-white alternate sections
+- `--gold-bright: #C9A227` — **primary** accent (buttons, eyebrows, stats, nav)
+- `--royal-green: #0F5C47` — **secondary** accent (tags, form focus, bullets, trust cues)
+- `--charcoal: #1E2B26` — text / dark contrast bands
 - `--font-display: 'Fraunces'` — headings
 - `--font-body: 'Inter'` — UI text
 

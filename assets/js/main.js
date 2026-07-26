@@ -189,19 +189,25 @@ function initSmoothAnchors() {
 }
 
 // ─── PRACTICE AREA ACCORDION ─────────────────────────────
+function setPracticeItemState(item, open) {
+  const header = item.querySelector('.practice-item__header');
+  const body = item.querySelector('.practice-item__body');
+  item.classList.toggle('open', open);
+  if (header) header.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (body) body.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+
 function initAccordion() {
   document.querySelectorAll('.practice-item__header').forEach(header => {
     header.addEventListener('click', () => {
       const item = header.closest('.practice-item');
       const isOpen = item.classList.contains('open');
 
-      // Close all
-      document.querySelectorAll('.practice-item.open').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.practice-item.open').forEach(i => setPracticeItemState(i, false));
 
-      if (!isOpen) item.classList.add('open');
+      if (!isOpen) setPracticeItemState(item, true);
     });
 
-    // Keyboard support
     header.setAttribute('role', 'button');
     header.setAttribute('tabindex', '0');
     header.addEventListener('keydown', e => {
@@ -211,6 +217,79 @@ function initAccordion() {
       }
     });
   });
+}
+
+// ─── TOUCH REVEAL (tap to open / close on mobile) ─────────
+function isTouchUI() {
+  return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function closeTouchReveals(except) {
+  document.querySelectorAll('.card-service.is-expanded, .card-team.is-expanded').forEach(el => {
+    if (el !== except) el.classList.remove('is-expanded');
+  });
+}
+
+function initTouchReveals() {
+  if (!isTouchUI()) return;
+
+  document.querySelectorAll('a.card-service, .card-service').forEach(card => {
+    card.addEventListener('click', e => {
+      e.stopPropagation();
+      const expanded = card.classList.contains('is-expanded');
+      const inReveal = e.target.closest('.card-service__reveal');
+
+      if (!expanded) {
+        e.preventDefault();
+        closeTouchReveals(card);
+        card.classList.add('is-expanded');
+        return;
+      }
+
+      if (inReveal) return;
+
+      e.preventDefault();
+      card.classList.remove('is-expanded');
+    });
+  });
+
+  document.querySelectorAll('.card-team').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a, button')) return;
+      e.stopPropagation();
+
+      const expanded = card.classList.contains('is-expanded');
+      closeTouchReveals();
+      if (!expanded) card.classList.add('is-expanded');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.card-service, .card-team')) {
+      closeTouchReveals();
+    }
+  });
+}
+
+// ─── RESPONSIVE INLINE GRIDS ───────────────────────────────
+function initResponsiveLayouts() {
+  function apply() {
+    const narrow = window.innerWidth <= 768;
+    const formNarrow = window.innerWidth <= 640;
+
+    document.querySelectorAll('.responsive-two-col').forEach(el => {
+      const wideGap = el.dataset.gapWide || '64px';
+      el.style.gridTemplateColumns = narrow ? '1fr' : '1fr 1fr';
+      el.style.gap = narrow ? '32px' : wideGap;
+    });
+
+    document.querySelectorAll('.form-two-col').forEach(el => {
+      el.style.gridTemplateColumns = formNarrow ? '1fr' : '1fr 1fr';
+    });
+  }
+
+  window.addEventListener('resize', apply, { passive: true });
+  apply();
 }
 
 // ─── RESOURCE TABS ───────────────────────────────────────
@@ -295,6 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatCounters();
   initSmoothAnchors();
   initAccordion();
+  initTouchReveals();
+  initResponsiveLayouts();
   initTabs();
   initContactForm();
 });

@@ -32,17 +32,18 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
   left: 0;
   width: 10px;
   height: 10px;
-  border: 1.5px solid var(--terracotta);
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   mix-blend-mode: normal;
-  transition: width 0.3s var(--ease-out-quart),
-              height 0.3s var(--ease-out-quart),
-              background 0.3s,
-              border-color 0.3s;
+  transition: width 0.1s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.1s cubic-bezier(0.25, 1, 0.5, 1),
+              background 0.1s ease,
+              border-color 0.1s ease,
+              opacity 0.08s ease;
   transform: translate(-50%, -50%);
-  will-change: transform;
+  will-change: transform, width, height;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,18 +51,17 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 }
 
 .custom-cursor.expanded {
-  width: 48px;
-  height: 48px;
-  background: rgba(201, 162, 39, 0.18);
-  border-color: var(--gold);
+  width: 52px;
+  height: 52px;
+  background: rgba(15, 92, 71, 0.12);
+  border-color: var(--royal-green);
 }
 
-/* Solid dot state shown while hovering magnetic buttons (prevents cursor vanishing) */
 .custom-cursor.on-button {
-  width: 8px;
-  height: 8px;
-  background: var(--gold);
-  border-color: var(--gold);
+  width: 9px;
+  height: 9px;
+  background: var(--white);
+  border-color: var(--white);
 }
 
 .custom-cursor.hidden {
@@ -72,15 +72,16 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 
 .cursor-label {
   font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.10em;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--terracotta);
+  color: var(--gold-deep);
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.06s ease;
   white-space: nowrap;
   pointer-events: none;
+  line-height: 1;
 }
 
 .custom-cursor.expanded .cursor-label {
@@ -180,7 +181,7 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 /* ─── FLOATING THUMBNAIL CURSOR FOLLOWER ─────────────────── */
 .floating-thumb {
   will-change: transform, opacity;
-  transition: opacity 0.25s ease, transform 0.25s var(--ease-out-quart);
+  transition: opacity 0.15s ease, transform 0.15s var(--ease-out-quart);
 }
 
 /* ─── SECTION LINE DRAW ──────────────────────────────────── */

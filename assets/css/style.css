@@ -7,30 +7,42 @@
 
 /* ─── CSS CUSTOM PROPERTIES ─────────────────────────────── */
 :root {
-  /* Palette — whitish gold */
-  --bg-primary:       #FCFAF4;
-  --bg-secondary:     #F4EEE0;
+  /* Palette — gold (primary), white (peace), royal green (prosperity accents) */
+  --white:            #FFFFFF;
+  --bg-primary:       #FFFFFF;
+  --bg-secondary:     #FDFBF7;   /* warm gold-white — lighter for more white feel */
+  --bg-green-soft:    #FFFFFF;   /* deprecated mint — sections use white + royal accents */
+  --bg-green-medium:  var(--royal-green); /* solid royal green bands only */
   --bg-elevated:      #FFFFFF;
-  --charcoal:         #2A251F;
-  --charcoal-deep:    #1B1712;
+  --charcoal:         #1E2B26;
+  --charcoal-deep:    #0F1A16;
 
-  /* Gold accent system */
+  /* Gold — PRIMARY brand accent (most prominent) */
   --gold-deep:        #8A6B1A;
   --gold:             #9C7A1E;
   --gold-bright:      #C9A227;
-  --gold-soft:        rgba(156, 122, 30, 0.10);
+  --gold-light:       #DBBB4C;
+  --gold-soft:        rgba(201, 162, 39, 0.12);
 
-  /* Backwards-compatible aliases (mapped to gold) */
-  --terracotta:       var(--gold);
-  --terracotta-bright:var(--gold-bright);
+  /* Royal green — SECONDARY accent (strategic highlights) */
+  --royal-green-deep: #083D2E;
+  --royal-green:      #0F5C47;
+  --royal-green-bright:#1A7A5E;
+  --royal-green-light:#2D9B78;
+  --royal-green-soft: rgba(15, 92, 71, 0.18);
+  --royal-green-border: rgba(15, 92, 71, 0.32);
 
-  --text-primary:     #2A251F;
-  --text-inverse:     #FCFAF4;
-  --text-secondary:   #665B4E;
-  --text-tertiary:    #9C8F7E;
-  --border-subtle:    rgba(43, 38, 34, 0.10);
-  --border-strong:    rgba(156, 122, 30, 0.38);
-  --success:          #6B8F5C;
+  /* Primary aliases — gold drives most UI via existing class names */
+  --terracotta:        var(--gold);
+  --terracotta-bright: var(--gold-bright);
+
+  --text-primary:     #1E2B26;
+  --text-inverse:     #FFFFFF;
+  --text-secondary:   #4A5C55;
+  --text-tertiary:    #7A8E86;
+  --border-subtle:    rgba(156, 122, 30, 0.10);
+  --border-strong:    rgba(201, 162, 39, 0.38);
+  --success:          #1A7A5E;
   --error:            #B5452F;
 
   /* Typography */
@@ -141,7 +153,7 @@ p { line-height: 1.65; color: var(--text-secondary); }
 .text-inverse p {
   color: var(--text-inverse);
 }
-.text-inverse p { color: rgba(247, 242, 234, 0.72); }
+.text-inverse p { color: rgba(255, 255, 255, 0.72); }
 
 /* ─── LAYOUT ─────────────────────────────────────────────── */
 .container {
@@ -157,6 +169,26 @@ p { line-height: 1.65; color: var(--text-secondary); }
 
 .section--secondary {
   background-color: var(--bg-secondary);
+}
+
+.section--green-tint {
+  background-color: var(--white);
+}
+
+.section--green-medium {
+  background-color: var(--royal-green);
+  color: var(--text-inverse);
+}
+
+.section--green-medium h1,
+.section--green-medium h2,
+.section--green-medium h3,
+.section--green-medium p {
+  color: var(--text-inverse);
+}
+
+.section--green-medium p {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .section--charcoal {
@@ -190,6 +222,11 @@ p { line-height: 1.65; color: var(--text-secondary); }
 .texture-overlay.texture-charcoal::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 10h60M0 20h60M0 30h60M0 40h60M0 50h60M10 0v60M20 0v60M30 0v60M40 0v60M50 0v60' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
   opacity: 0.035;
+}
+
+.section--green-medium.texture-overlay::before {
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 10h60M0 20h60M0 30h60M0 40h60M0 50h60M10 0v60M20 0v60M30 0v60M40 0v60M50 0v60' stroke='%23ffffff' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
 .texture-overlay > * {
@@ -234,7 +271,9 @@ p { line-height: 1.65; color: var(--text-secondary); }
 }
 
 /* ─── UTILITY ────────────────────────────────────────────── */
-.text-terracotta { color: var(--terracotta); }
+.text-terracotta { color: var(--gold); }
+.text-gold       { color: var(--gold); }
+.text-green      { color: var(--royal-green); }
 .text-center { text-align: center; }
 .mt-4 { margin-top: 1rem; }
 .mt-8 { margin-top: 2rem; }

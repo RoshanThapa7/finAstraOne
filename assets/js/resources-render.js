@@ -8,7 +8,7 @@
 
 function formatDate(dateStr) {
   const date = new Date(dateStr);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return date.toLocaleDateString('en-NP', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 function getCategoryLabel(cat) {
@@ -18,16 +18,16 @@ function getCategoryLabel(cat) {
 
 function getPlaceholderSVG(tag) {
   const colors = {
-    'Estate Planning': '#9C7A1E',
-    'Regulatory': '#6B5F52',
-    'Succession': '#B8912E',
-    'Tax Strategy': '#6B8F5C',
-    'Press': '#2B2622',
-    'Corporate': '#6B5F52',
-    'Compliance': '#9C7A1E',
-    'Wealth': '#6B8F5C',
+    'Estate Planning': '#C9A227',
+    'Regulatory': '#0F5C47',
+    'Succession': '#9C7A1E',
+    'Tax Strategy': '#1A7A5E',
+    'Press': '#8A6B1A',
+    'Corporate': '#0F5C47',
+    'Compliance': '#C9A227',
+    'Wealth': '#1A7A5E',
   };
-  const color = colors[tag] || '#B8912E';
+  const color = colors[tag] || '#0F5C47';
   return `
     <div class="card-resource__thumb-placeholder" aria-hidden="true">
       <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">

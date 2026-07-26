@@ -6,54 +6,31 @@
 'use strict';
 
 (function () {
-  // Skip on touch/reduced-motion devices
   const isTouch = window.matchMedia('(hover: none)').matches;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isTouch || prefersReduced) return;
 
-  // ─── CUSTOM CURSOR SETUP ──────────────────────────────────
   const cursor = document.querySelector('.custom-cursor');
   const cursorLabel = cursor ? cursor.querySelector('.cursor-label') : null;
   if (!cursor) return;
 
-  // Signal that the custom cursor is active. CSS only hides the native cursor
-  // when this class is present, so if this script ever fails the normal
-  // pointer stays visible (prevents the "cursor disappears" bug).
   document.documentElement.classList.add('has-custom-cursor');
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
   let cursorX = mouseX;
   let cursorY = mouseY;
-  const LERP = 0.12;
+  let hoverEl = null;
 
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+  /* Snappy follow — higher LERP = less lag */
+  const LERP = 0.48;
 
-  // Hide cursor when leaving window
-  document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
-  document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+  const INTERACTIVE =
+    'a, button, .card-resource, .card-service, .card-team, ' +
+    '.useful-link-item, .practice-item__header, .tab-btn, ' +
+    '.footer__social, .footer__link, .nav-dropdown__item, ' +
+    '.nav-link, .nav-dropdown__trigger';
 
-  // Animate cursor with lerp
-  function animateCursor() {
-    cursorX += (mouseX - cursorX) * LERP;
-    cursorY += (mouseY - cursorY) * LERP;
-
-    if (typeof gsap !== 'undefined') {
-      gsap.set(cursor, { x: cursorX, y: cursorY });
-    } else {
-      cursor.style.transform = `translate(calc(-50% + ${cursorX}px), calc(-50% + ${cursorY}px))`;
-      cursor.style.left = '0';
-      cursor.style.top = '0';
-    }
-
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  // ─── CURSOR LABEL MAPPING ────────────────────────────────
   const labelMap = {
     'a': 'VIEW',
     'button': 'OPEN',
@@ -72,11 +49,7 @@
     '.footer__social': 'VIEW',
   };
 
-  // Track whether cursor is over a magnetic button
-  let overMagneticBtn = false;
-
   function getLabel(el) {
-    // Check specific classes first
     for (const [selector, label] of Object.entries(labelMap)) {
       if (el.matches && el.matches(selector)) return label;
       if (el.closest && el.closest(selector)) return label;
@@ -84,57 +57,73 @@
     return null;
   }
 
-  // Interactive elements
-  function setupCursorHovers() {
-    const interactiveSelectors = [
-      'a', 'button', '.card-resource', '.card-service',
-      '.card-team', '.useful-link-item', '.practice-item__header',
-      '.tab-btn', '.footer__social', '.footer__link', '.nav-dropdown__item'
-    ].join(', ');
+  function applyHoverState(el) {
+    cursor.classList.remove('expanded', 'on-button');
 
-    document.querySelectorAll(interactiveSelectors).forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        if (overMagneticBtn) return;
-        const label = getLabel(el);
-        if (label && cursorLabel) cursorLabel.textContent = label;
-        cursor.classList.add('expanded');
-        cursor.classList.remove('hidden');
-      });
+    if (!el) {
+      if (cursorLabel) cursorLabel.textContent = '';
+      return;
+    }
 
-      el.addEventListener('mouseleave', () => {
-        if (!overMagneticBtn) {
-          cursor.classList.remove('expanded');
-        }
-      });
-    });
+    const btn = el.matches('.btn') ? el : el.closest('.btn');
+    if (btn) {
+      cursor.classList.add('on-button');
+      if (cursorLabel) cursorLabel.textContent = '';
+      return;
+    }
 
-    // Buttons: keep a small solid dot visible (never hide the cursor entirely,
-    // otherwise the pointer disappears while the magnetic effect takes over).
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('mouseenter', () => {
-        overMagneticBtn = true;
-        cursor.classList.remove('hidden');
-        cursor.classList.remove('expanded');
-        cursor.classList.add('on-button');
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        overMagneticBtn = false;
-        cursor.classList.remove('on-button');
-      });
-    });
+    const label = getLabel(el);
+    if (cursorLabel) cursorLabel.textContent = label || '';
+    cursor.classList.add('expanded');
   }
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
+  document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * LERP;
+    cursorY += (mouseY - cursorY) * LERP;
+
+    if (typeof gsap !== 'undefined') {
+      gsap.set(cursor, {
+        x: cursorX,
+        y: cursorY,
+        xPercent: -50,
+        yPercent: -50,
+        force3D: true
+      });
+    } else {
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+    }
+
+    /* Hit-test every frame — avoids broken flicker on nested links/cards */
+    const hit = document.elementFromPoint(mouseX, mouseY);
+    const interactive = hit?.closest?.(INTERACTIVE) ?? null;
+
+    if (interactive !== hoverEl) {
+      hoverEl = interactive;
+      applyHoverState(hoverEl);
+    }
+
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
 
   // ─── MAGNETIC BUTTONS ─────────────────────────────────────
   function initMagneticButtons() {
     if (typeof gsap === 'undefined') return;
 
-    const MAGNETIC_STRENGTH = 0.35;
-    const MAGNETIC_RADIUS = 80;
+    const MAGNETIC_STRENGTH = 0.28;
+    const MAGNETIC_RADIUS = 72;
 
     document.querySelectorAll('.btn').forEach(btn => {
-      const quickX = gsap.quickTo(btn, 'x', { duration: 0.5, ease: 'power3.out' });
-      const quickY = gsap.quickTo(btn, 'y', { duration: 0.5, ease: 'power3.out' });
+      const quickX = gsap.quickTo(btn, 'x', { duration: 0.22, ease: 'power2.out' });
+      const quickY = gsap.quickTo(btn, 'y', { duration: 0.22, ease: 'power2.out' });
 
       btn.addEventListener('mousemove', e => {
         const rect = btn.getBoundingClientRect();
@@ -146,27 +135,22 @@
 
         if (dist < MAGNETIC_RADIUS) {
           const strength = (1 - dist / MAGNETIC_RADIUS) * MAGNETIC_STRENGTH;
-          quickX(dx * strength * 2.5);
-          quickY(dy * strength * 2.5);
+          quickX(dx * strength * 2.2);
+          quickY(dy * strength * 2.2);
         }
-      });
+      }, { passive: true });
 
       btn.addEventListener('mouseleave', () => {
         quickX(0);
         quickY(0);
       });
 
-      // Radial fill click
       btn.addEventListener('click', function (e) {
         const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        btn.style.setProperty('--ripple-x', x + 'px');
-        btn.style.setProperty('--ripple-y', y + 'px');
+        btn.style.setProperty('--ripple-x', (e.clientX - rect.left) + 'px');
+        btn.style.setProperty('--ripple-y', (e.clientY - rect.top) + 'px');
         btn.classList.add('ripple-active');
-
-        setTimeout(() => btn.classList.remove('ripple-active'), 600);
+        setTimeout(() => btn.classList.remove('ripple-active'), 500);
       });
     });
   }
@@ -174,27 +158,22 @@
   // ─── FLOATING THUMBNAIL (Resources page) ─────────────────
   function initFloatingThumbs() {
     const floatingThumb = document.querySelector('.floating-thumb');
-    if (!floatingThumb) return;
+    if (!floatingThumb || window.matchMedia('(hover: none)').matches) return;
 
-    const thumbImg = floatingThumb.querySelector('img, svg, .floating-thumb-inner');
-    let currentCard = null;
-    let thumbX = 0, thumbY = 0;
-    let targetX = 0, targetY = 0;
-
-    function updateThumbPos(e) {
-      targetX = e.clientX + 24;
-      targetY = e.clientY - 80;
-    }
+    let thumbX = 0;
+    let thumbY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    const THUMB_LERP = 0.32;
 
     document.addEventListener('mousemove', e => {
-      updateThumbPos(e);
-      thumbX += (targetX - thumbX) * 0.1;
-      thumbY += (targetY - thumbY) * 0.1;
-    });
+      targetX = e.clientX + 24;
+      targetY = e.clientY - 80;
+    }, { passive: true });
 
     function animateThumb() {
-      thumbX += (targetX - thumbX) * 0.1;
-      thumbY += (targetY - thumbY) * 0.1;
+      thumbX += (targetX - thumbX) * THUMB_LERP;
+      thumbY += (targetY - thumbY) * THUMB_LERP;
       floatingThumb.style.left = thumbX + 'px';
       floatingThumb.style.top = thumbY + 'px';
       requestAnimationFrame(animateThumb);
@@ -203,41 +182,31 @@
 
     document.querySelectorAll('.card-resource, [data-float-thumb]').forEach(card => {
       card.addEventListener('mouseenter', () => {
-        // Get thumbnail src if exists
         const thumb = card.querySelector('.card-resource__thumb img');
-        const placeholder = card.querySelector('.card-resource__thumb-placeholder');
-
-        if (thumbImg) {
-          if (thumb) {
-            floatingThumb.innerHTML = `<img src="${thumb.src}" alt="" aria-hidden="true">`;
-          } else {
-            floatingThumb.innerHTML = getResourcePlaceholderSVG();
-          }
+        if (thumb) {
+          floatingThumb.innerHTML = `<img src="${thumb.src}" alt="" aria-hidden="true">`;
+        } else {
+          floatingThumb.innerHTML = getResourcePlaceholderSVG();
         }
-
         floatingThumb.classList.add('visible');
-        currentCard = card;
       });
 
       card.addEventListener('mouseleave', () => {
         floatingThumb.classList.remove('visible');
-        currentCard = null;
       });
     });
   }
 
   function getResourcePlaceholderSVG() {
-    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F4EEE0,#FCFAF4);">
+    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FAF7F0,#FFFFFF);">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#B8912E" stroke-width="1.5" fill="none"/>
-        <path d="M14 24h20M14 18h12M14 30h16" stroke="#B8912E" stroke-width="1.5" stroke-linecap="square"/>
+        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#C9A227" stroke-width="1.5" fill="none"/>
+        <path d="M14 24h20M14 18h12M14 30h16" stroke="#0F5C47" stroke-width="1.5" stroke-linecap="square"/>
       </svg>
     </div>`;
   }
 
-  // ─── INIT ─────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
-    setupCursorHovers();
     initMagneticButtons();
     initFloatingThumbs();
   });
