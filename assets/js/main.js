@@ -378,4 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initResponsiveLayouts();
   initTabs();
   initContactForm();
+  document.querySelectorAll('.footer-year, #footer-year').forEach(el => {
+    el.textContent = new Date().getFullYear();
+  });
 });

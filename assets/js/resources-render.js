@@ -40,12 +40,12 @@ function getPlaceholderSVG(tag) {
 
 function renderResourceCard(post) {
   const thumb = post.image
-    ? `<img src="${post.image}" alt="${post.title}" loading="lazy">`
+    ? `<img src="${post.image.replace(/^\//, '')}" alt="${post.title}" loading="lazy">`
     : getPlaceholderSVG(post.tag);
 
   return `
     <article class="card-resource reveal-up">
-      <a href="/blog/${post.slug}.html" aria-label="Read: ${post.title}">
+      <a href="blog/${post.slug}.html" aria-label="Read: ${post.title}">
         <div class="card-resource__thumb">
           ${thumb}
         </div>
