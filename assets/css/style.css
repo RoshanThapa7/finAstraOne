@@ -7,41 +7,41 @@
 
 /* ─── CSS CUSTOM PROPERTIES ─────────────────────────────── */
 :root {
-  /* Palette — gold (primary), white (peace), royal green (prosperity accents) */
+  /* Palette — white (primary), royal green + gold (equal accents) */
   --white:            #FFFFFF;
   --bg-primary:       #FFFFFF;
-  --bg-secondary:     #FDFBF7;   /* warm gold-white — lighter for more white feel */
-  --bg-green-soft:    #FFFFFF;   /* deprecated mint — sections use white + royal accents */
-  --bg-green-medium:  var(--royal-green); /* solid royal green bands only */
+  --bg-secondary:     #FFFFFF;
+  --bg-green-soft:    #FFFFFF;
+  --bg-green-medium:  var(--royal-green);
   --bg-elevated:      #FFFFFF;
   --charcoal:         #1E2B26;
   --charcoal-deep:    #0F1A16;
 
-  /* Gold — PRIMARY brand accent (most prominent) */
+  /* Gold — accent (paired equally with green) */
   --gold-deep:        #8A6B1A;
   --gold:             #9C7A1E;
   --gold-bright:      #C9A227;
   --gold-light:       #DBBB4C;
-  --gold-soft:        rgba(201, 162, 39, 0.12);
+  --gold-soft:        rgba(201, 162, 39, 0.10);
 
-  /* Royal green — SECONDARY accent (strategic highlights) */
+  /* Royal green — accent (paired equally with gold) */
   --royal-green-deep: #083D2E;
   --royal-green:      #0F5C47;
   --royal-green-bright:#1A7A5E;
   --royal-green-light:#2D9B78;
-  --royal-green-soft: rgba(15, 92, 71, 0.18);
-  --royal-green-border: rgba(15, 92, 71, 0.32);
+  --royal-green-soft: rgba(15, 92, 71, 0.10);
+  --royal-green-border: rgba(15, 92, 71, 0.22);
 
-  /* Primary aliases — gold drives most UI via existing class names */
-  --terracotta:        var(--gold);
-  --terracotta-bright: var(--gold-bright);
+  /* Legacy aliases — default UI chrome uses green on white */
+  --terracotta:        var(--royal-green);
+  --terracotta-bright: var(--royal-green-light);
 
   --text-primary:     #1E2B26;
   --text-inverse:     #FFFFFF;
   --text-secondary:   #4A5C55;
   --text-tertiary:    #7A8E86;
-  --border-subtle:    rgba(156, 122, 30, 0.10);
-  --border-strong:    rgba(201, 162, 39, 0.38);
+  --border-subtle:    rgba(15, 92, 71, 0.10);
+  --border-strong:    rgba(15, 92, 71, 0.26);
   --success:          #1A7A5E;
   --error:            #B5452F;
 
@@ -236,7 +236,7 @@ p { line-height: 1.65; color: var(--text-secondary); }
 
 /* ─── ACCESSIBILITY ──────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--terracotta);
+  outline: 2px solid var(--royal-green);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -258,8 +258,8 @@ p { line-height: 1.65; color: var(--text-secondary); }
   position: absolute;
   top: -100%;
   left: 16px;
-  background: var(--gold-bright);
-  color: var(--charcoal-deep);
+  background: var(--royal-green);
+  color: var(--white);
   padding: 8px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -271,7 +271,7 @@ p { line-height: 1.65; color: var(--text-secondary); }
 }
 
 /* ─── UTILITY ────────────────────────────────────────────── */
-.text-terracotta { color: var(--gold); }
+.text-terracotta { color: var(--royal-green); }
 .text-gold       { color: var(--gold); }
 .text-green      { color: var(--royal-green); }
 .text-center { text-align: center; }

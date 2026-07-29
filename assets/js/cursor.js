@@ -200,7 +200,7 @@
   function getResourcePlaceholderSVG() {
     return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FAF7F0,#FFFFFF);">
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#C9A227" stroke-width="1.5" fill="none"/>
+        <rect x="6" y="6" width="36" height="36" rx="1" stroke="#0F5C47" stroke-width="1.5" fill="none"/>
         <path d="M14 24h20M14 18h12M14 30h16" stroke="#0F5C47" stroke-width="1.5" stroke-linecap="square"/>
       </svg>
     </div>`;

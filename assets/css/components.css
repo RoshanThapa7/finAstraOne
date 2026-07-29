@@ -130,11 +130,11 @@
   box-shadow: 0 8px 28px rgba(15, 92, 71, 0.38);
 }
 
-/* Outline — gold border, green fill on hover */
+/* Outline — green border */
 .btn-outline {
   background: var(--white);
   color: var(--text-primary);
-  border: 1px solid var(--gold);
+  border: 1px solid var(--royal-green-border);
 }
 
 .btn-outline:hover {
@@ -143,17 +143,17 @@
   border-color: var(--royal-green);
 }
 
-/* Outline on dark bg — gold accent */
+/* Outline on dark bg — white accent */
 .btn-outline-light {
   background: transparent;
   color: var(--text-inverse);
-  border: 1px solid rgba(201, 162, 39, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.55);
 }
 
 .btn-outline-light:hover {
-  background: var(--gold-bright);
-  color: var(--charcoal-deep);
-  border-color: var(--gold-bright);
+  background: var(--white);
+  color: var(--royal-green-deep);
+  border-color: var(--white);
 }
 
 /* WhatsApp button */
@@ -227,7 +227,7 @@
 }
 
 .nav-logo__wordmark span {
-  color: var(--gold);
+  color: var(--text-primary);
 }
 
 /* Desktop nav links */
@@ -259,7 +259,7 @@
   left: 14px;
   right: 14px;
   height: 1.5px;
-  background: var(--gold);
+  background: var(--royal-green);
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 0.3s var(--ease-out-quart);
@@ -598,7 +598,7 @@
 }
 
 .footer__wordmark span {
-  color: var(--gold-bright);
+  color: var(--royal-green-light);
 }
 
 .footer--hero .footer__copy {
@@ -632,7 +632,7 @@
 }
 
 .footer--hero .footer__link:hover {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .footer__brand-col {
@@ -696,7 +696,7 @@
 }
 
 .footer__logo-wordmark span {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .footer__col-title {
@@ -731,7 +731,7 @@
 }
 
 .footer__link:hover {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .footer__link--inline {
@@ -742,7 +742,7 @@
 }
 
 .footer__link--inline:hover {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .footer__contact-item {
@@ -816,7 +816,7 @@
 
 .footer__social:hover {
   border-color: var(--royal-green-light);
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .footer__social svg {
@@ -919,15 +919,15 @@
 }
 
 .stats-bar .stat-number {
-  color: var(--gold-bright);
-}
-
-.stats-bar .stat-item:nth-child(even) .stat-number {
   color: var(--white);
 }
 
-.stats-bar .stat-badge-icon {
+.stats-bar .stat-item:nth-child(even) .stat-number {
   color: var(--gold-bright);
+}
+
+.stats-bar .stat-badge-icon {
+  color: var(--white);
 }
 
 .stat-badge {
@@ -1042,7 +1042,7 @@
   font-family: var(--font-display);
   font-size: 48px;
   font-weight: 300;
-  color: rgba(201, 162, 39, 0.14);
+  color: rgba(15, 92, 71, 0.12);
   position: absolute;
   bottom: 20px;
   right: 24px;
@@ -1255,7 +1255,7 @@
 .pull-quote__mark {
   font-family: var(--font-display);
   font-size: 120px;
-  color: rgba(201, 162, 39, 0.32);
+  color: rgba(255, 255, 255, 0.22);
   line-height: 0.5;
   display: block;
   margin-bottom: 24px;
@@ -1638,14 +1638,14 @@
   display: block;
 }
 
-/* Decorative gold accent behind the hero image */
+/* Decorative accent behind the hero image */
 .hero__media::before {
   content: '';
   position: absolute;
   inset: auto -18px -18px auto;
   width: 60%;
   height: 60%;
-  border-right: 2px solid var(--gold-bright);
+  border-right: 2px solid rgba(255, 255, 255, 0.85);
   border-bottom: 2px solid var(--royal-green-bright);
   opacity: 0.5;
   border-radius: 0 0 6px 0;
@@ -1657,7 +1657,7 @@
   left: -18px;
   bottom: 28px;
   background: var(--white);
-  border: 1px solid rgba(201, 162, 39, 0.35);
+  border: 1px solid var(--royal-green-border);
   box-shadow: 0 16px 40px rgba(43, 38, 34, 0.12);
   border-left: 3px solid var(--royal-green);
   border-radius: 4px;
@@ -2164,10 +2164,21 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   TRI-COLOR BALANCE — 50% gold · 30% green · 20% white
+   PALETTE BALANCE — white primary · equal green + gold accents
    ═══════════════════════════════════════════════════════════ */
 
-/* Green-band sections (white bg + royal green accents) */
+/* Default light sections — green eyebrows & rules */
+.section-eyebrow,
+.section-eyebrow::before,
+.rule-motif__line {
+  color: var(--royal-green);
+}
+.section-eyebrow::before,
+.rule-motif__line {
+  background: var(--royal-green);
+}
+
+/* Green-band sections */
 .section--green-tint .section-eyebrow,
 .section--green-tint .section-eyebrow::before {
   color: var(--royal-green);
@@ -2176,66 +2187,64 @@
   background: var(--royal-green);
 }
 
-/* Solid royal green sections */
+/* Solid royal green sections — white accents */
 .section--green-medium .section-eyebrow,
 .section--green-medium .section-eyebrow::before {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 .section--green-medium .section-eyebrow::before {
-  background: var(--gold-bright);
+  background: var(--white);
 }
 .section--green-medium .rule-motif__line {
   background: rgba(255, 255, 255, 0.45);
 }
 .section--green-medium .rule-motif__diamond {
-  background: var(--gold-bright);
+  background: var(--white);
 }
 .section--green-medium .process-step__number {
-  color: var(--gold-bright);
-}
-.section--green-medium .process-step:nth-child(even) .process-step__number {
   color: var(--white);
 }
+.section--green-medium .process-step:nth-child(even) .process-step__number {
+  color: var(--gold-bright);
+}
 
-/* Stats elsewhere: alternate gold / green */
-.stat-item:nth-child(odd) .stat-number { color: var(--gold); }
-.stat-item:nth-child(even) .stat-number { color: var(--royal-green); }
+/* Stats / process / creds on light sections — alternate green & gold */
+.stat-item:nth-child(odd) .stat-number { color: var(--royal-green); }
+.stat-item:nth-child(even) .stat-number { color: var(--gold); }
 
-/* Process steps: alternate gold / green numbers */
-.process-step:nth-child(odd) .process-step__number { color: var(--gold); }
-.process-step:nth-child(even) .process-step__number { color: var(--royal-green); }
+.process-step:nth-child(odd) .process-step__number { color: var(--royal-green); }
+.process-step:nth-child(even) .process-step__number { color: var(--gold); }
 
-/* Credentials elsewhere: alternate icon colors */
-.cred-item:nth-child(odd) .cred-item__icon { color: var(--gold); }
-.cred-item:nth-child(even) .cred-item__icon { color: var(--royal-green); }
+.cred-item:nth-child(odd) .cred-item__icon { color: var(--royal-green); }
+.cred-item:nth-child(even) .cred-item__icon { color: var(--gold); }
 
-/* Resource cards: green title hover, gold read-more */
+/* Resource cards */
 .card-resource:hover .card-resource__title { color: var(--royal-green); }
 .card-resource__read-more { color: var(--gold-deep); }
 
-/* Useful links & practice accordion hovers */
+/* Useful links & practice accordion */
 .useful-link-item:hover .useful-link-title { color: var(--royal-green); }
-.useful-link-arrow { color: var(--gold); }
+.useful-link-arrow { color: var(--royal-green); }
 .practice-item:hover .practice-item__title { color: var(--royal-green); }
 .practice-item.open .practice-item__icon { color: var(--gold); }
 
-/* Contact page icons */
+/* Contact page */
 .contact-detail__icon { color: var(--royal-green); }
-.contact-detail__value a:hover { color: var(--gold); }
+.contact-detail__value a:hover { color: var(--royal-green); }
 
-/* Nav scrolled: subtle green-gold border */
+/* Nav scrolled */
 .nav-bar.scrolled {
   border-bottom-color: rgba(15, 92, 71, 0.12);
   box-shadow: 0 4px 24px rgba(15, 92, 71, 0.06);
 }
 
-/* Card shimmer: gold default, green on green sections */
+/* Card shimmer */
 .section--green-tint .card-service::before,
 .section--green-medium .card-service::before {
   background: linear-gradient(90deg, transparent, var(--royal-green-light), transparent);
 }
 
-/* CTA band eyebrows on dark sections — green */
+/* CTA band eyebrows on dark sections */
 .cta-band .section-eyebrow {
   color: var(--royal-green-light) !important;
   position: relative;
@@ -2245,21 +2254,21 @@
   background: var(--royal-green-light) !important;
 }
 
-/* Creds band eyebrows & icons on royal green */
+/* Creds band on royal green — white + gold icons */
 .creds-band .section-eyebrow,
 .creds-band .section-eyebrow::before {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 .creds-band .section-eyebrow::before {
-  background: var(--gold-bright);
+  background: var(--white);
 }
 
 .creds-band .cred-item:nth-child(odd) .cred-item__icon {
-  color: var(--gold-bright);
+  color: var(--white);
 }
 
 .creds-band .cred-item:nth-child(even) .cred-item__icon {
-  color: var(--white);
+  color: var(--gold-bright);
 }
 
 /* Green sections — practice accordion borders */
@@ -2268,16 +2277,15 @@
   border-bottom-color: var(--royal-green-border);
 }
 
-/* Pull quote: gold mark, green attribution */
-.pull-quote__mark { color: rgba(201, 162, 39, 0.35); }
+/* Pull quote */
+.pull-quote__mark { color: rgba(255, 255, 255, 0.22); }
 .pull-quote__attr { color: var(--royal-green-light); }
 
-/* Dropdown hover */
+/* Dropdown / mobile nav */
 .nav-dropdown__item:hover {
   color: var(--royal-green);
 }
 
-/* Mobile nav */
 .nav-mobile__link:hover,
 .nav-mobile__link:active {
   color: var(--royal-green);
