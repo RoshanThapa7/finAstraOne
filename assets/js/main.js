@@ -11,11 +11,11 @@ let lenis;
 function initLenis() {
   if (typeof Lenis === 'undefined') return;
   lenis = new Lenis({
-    duration: 1.2,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    lerp: 0.08,
-    wheelMultiplier: 1.0,
-    touchMultiplier: 1.5,
+    lerp: 0.1,
+    wheelMultiplier: 1.2,
+    smoothWheel: true,
+    smoothTouch: true,
+    touchMultiplier: 2,
     infinite: false,
   });
 
