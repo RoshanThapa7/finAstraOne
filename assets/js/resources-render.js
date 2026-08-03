@@ -88,7 +88,7 @@ function initResourcesPage() {
   const blogGrid = document.getElementById('blog-grid');
   const articlesGrid = document.getElementById('articles-grid');
   const newsGrid = document.getElementById('news-grid');
-  const linksContainer = document.getElementById('useful-links-container');
+  const linksContainer = document.getElementById('quick-links-container');
 
   const blogs = resourcesData.filter(p => p.category === 'blog');
   const articles = resourcesData.filter(p => p.category === 'article');
@@ -131,3 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initResourcesPage();
   initHomeInsights();
 });
+

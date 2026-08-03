@@ -32,11 +32,11 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
   left: 0;
   width: 10px;
   height: 10px;
-  border: 1.5px solid var(--royal-green);
+  border: 1.5px solid #ffffff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  mix-blend-mode: normal;
+  mix-blend-mode: difference;
   transition: width 0.1s cubic-bezier(0.25, 1, 0.5, 1),
               height 0.1s cubic-bezier(0.25, 1, 0.5, 1),
               background 0.1s ease,
@@ -53,15 +53,15 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
 .custom-cursor.expanded {
   width: 52px;
   height: 52px;
-  background: rgba(15, 92, 71, 0.12);
-  border-color: var(--royal-green);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #ffffff;
 }
 
 .custom-cursor.on-button {
   width: 9px;
   height: 9px;
-  background: var(--white);
-  border-color: var(--white);
+  background: #ffffff;
+  border-color: #ffffff;
 }
 
 .custom-cursor.hidden {
@@ -76,7 +76,7 @@ html:not(.has-custom-cursor) .custom-cursor { display: none; }
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--royal-green);
+  color: #ffffff;
   opacity: 0;
   transition: opacity 0.06s ease;
   white-space: nowrap;

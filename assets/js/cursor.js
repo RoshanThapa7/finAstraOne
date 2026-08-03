@@ -26,7 +26,7 @@
   const LERP = 0.48;
 
   const INTERACTIVE =
-    'a, button, .card-resource, .card-service, .card-team, ' +
+    'a:not(.footer__wordmark), button, .card-resource, .card-service, .card-team, ' +
     '.useful-link-item, .practice-item__header, .tab-btn, ' +
     '.footer__social, .footer__link, .nav-dropdown__item, ' +
     '.nav-link, .nav-dropdown__trigger';
@@ -212,3 +212,4 @@
   });
 
 })();
+

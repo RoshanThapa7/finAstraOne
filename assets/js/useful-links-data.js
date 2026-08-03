@@ -1,6 +1,6 @@
 /* ============================================================
-   FIN ASTRA — USEFUL LINKS DATA
-   useful-links-data.js — curated external resource list
+   FIN ASTRA — Quick Links DATA
+   quick-links-data.js — curated external resource list
    ============================================================ */
 
 const usefulLinksData = [
@@ -45,3 +45,4 @@ const usefulLinksData = [
     description: "Leading English-language journalism on Nepal's economy, finance, and regulation. Recommended reading for clients and advisors tracking local market developments."
   }
 ];
+

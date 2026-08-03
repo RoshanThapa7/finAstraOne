@@ -382,3 +382,34 @@ document.addEventListener('DOMContentLoaded', () => {
     el.textContent = new Date().getFullYear();
   });
 });
+
+// --- BACK TO TOP BUTTON ------------------------------------
+function initBackToTop() {
+  const btn = document.createElement('a');
+  btn.href = '#';
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 15l7-7 7 7"/></svg>';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btn.classList.add('is-visible');
+    } else {
+      btn.classList.remove('is-visible');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (typeof lenis !== 'undefined') {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initBackToTop();
+});
